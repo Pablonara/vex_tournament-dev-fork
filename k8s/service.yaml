@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vex-tournament
+spec:
+  selector:
+    app: vex-tournament
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8000
+  type: LoadBalancer

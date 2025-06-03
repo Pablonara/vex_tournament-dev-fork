@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vex-tournament
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vex-tournament
+  template:
+    metadata:
+      labels:
+        app: vex-tournament
+    spec:
+      containers:
+      - name: vex-tournament
+        image: vex-tournament:latest
+        ports:
+        - containerPort: 8000
