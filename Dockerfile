@@ -16,10 +16,18 @@ COPY . .
 # Expose the port that the server will listen on
 EXPOSE 8000
 
+# Copy the .env file
+COPY .env ./.env
+
 # Set the environment variables
+ENV ALLOWED_HOSTS=['*']
+ENV PATH=$PATH:/app/.env
 ENV DEBUG=False
-ENV ALLOWED_HOSTS=0.0.0.0
-ENV STATIC_ROOT=
+
+
+# Collect static files and ensure app is ready
+RUN /usr/local/bin/python manage.py collectstatic --noinput
+RUN /usr/local/bin/python manage.py makemigrations && /usr/local/bin/python manage.py migrate
 
 # Run the command to start the server when the container starts
 CMD ["gunicorn", "vex_tournament.wsgi:application", "--bind", "0.0.0.0:8000"]
