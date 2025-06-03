@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: vex-tournament
-        image: cocogoat1441/vex-tournament:v0.1.0
+        image: cocogoat1441/vex-tournament:v0.1.1
         ports:
         - containerPort: 8000
         env:
